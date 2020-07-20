@@ -1,18 +1,25 @@
-.pokecard {
+.card-back {
   width: 200px;
   height: 290px;
   text-align: center;
-  font-family: 'Fresca', sans-serif;
   border: 5px solid #356BBC;
   background-color: #F5F5F5;
   border-radius: 5%;
 }
 
-.pokecard:hover {
+.card-back:hover {
   background-color: #ededed;
 }
 
-/* utility classes */
-.w-100 {
-  width: 100%;
+.card-front {
+  width: 200px;
+  height: 290px;
+  border-radius: 5%;
+  background-color: #F5F5F5;
+  font-family: 'Fresca', sans-serif;
+  border: 5px solid #FFCD00;
+}
+
+.card-front:hover {
+  background-color: #ededed;
 }

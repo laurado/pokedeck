@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Row } from 'reactstrap';
 import Pokecard from './Pokecard';
 import './App.css';
 
@@ -11,11 +12,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-      fetch('https://pokeapi.co/api/v2/pokemon/1')
+    let promises = []
+    for (let i = 1; i < 10; i++) {
+      var newPokemon = fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
       .then(response => response.json())
       .then(data => {
-        this.setState({ pokemon: [data] })
+        return data;
       });
+      promises.push(newPokemon);
+    }
+    Promise.all(promises).then(pokemon => this.setState({pokemon: pokemon}))
   }
 
   render() {
@@ -29,9 +35,11 @@ class App extends React.Component {
     })
 
     return (
-      <div className="App">
-        {cards}
-      </div>
+      <Container className="App">
+        <Row>
+          {cards}
+        </Row>
+      </Container>
     );
   }
 }
