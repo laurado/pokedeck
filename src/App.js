@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row } from 'reactstrap';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import Pokecard from './Pokecard';
 import './App.css';
 
@@ -8,12 +9,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       pokemon: [],
+      hasMore: true,
     }
   }
 
   componentDidMount() {
     let promises = []
-    for (let i = 1; i < 10; i++) {
+    for (let i = 1; i < 13; i++) {
       var newPokemon = fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
       .then(response => response.json())
       .then(data => {
@@ -23,6 +25,28 @@ class App extends React.Component {
     }
     Promise.all(promises).then(pokemon => this.setState({pokemon: pokemon}))
   }
+
+  fetchMoreData = () => {
+    if (this.state.pokemon.length >= 150) {
+      this.setState({ hasMore: false });
+      return;
+    }
+ 
+    let nextIndex = this.state.pokemon.length + 1;
+    let promises = []
+    for (let i = nextIndex; i < (nextIndex + 12); i++) {
+      var newPokemon = fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+      .then(response => response.json())
+      .then(data => {
+        return data;
+      });
+      promises.push(newPokemon);
+    }
+    Promise.all(promises).then(pokemon => {
+      let newPokemon = this.state.pokemon.concat(pokemon)
+      this.setState({pokemon: newPokemon})
+    })
+  };
 
   render() {
     let cards = this.state.pokemon.map(pokemon => {
@@ -36,9 +60,20 @@ class App extends React.Component {
 
     return (
       <Container className="App">
-        <Row>
-          {cards}
-        </Row>
+        <InfiniteScroll
+          dataLength={this.state.pokemon.length}
+          next={this.fetchMoreData}
+          hasMore={this.state.hasMore}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          }
+        >
+          <Row>
+            {cards}
+          </Row>
+        </InfiniteScroll>
       </Container>
     );
   }
