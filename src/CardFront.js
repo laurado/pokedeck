@@ -9,7 +9,11 @@ function CardFront (props) {
       ariaLabel='flip card to back'
     >
       <div>
-        <img className='card-front-img' src={props.pokemon.sprites.front_default} />
+        <img
+          className='card-front-img'
+          src={props.pokemon.sprites.front_default}
+          alt={props.pokemon.name}
+        />
         <div className='stats'>
           <h3 className='mt-1'>{props.pokemon.name}</h3>
           <p className='mb-0'>id: {props.pokemon.id}</p>
