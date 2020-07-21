@@ -66,7 +66,7 @@ class App extends React.Component {
           hasMore={this.state.hasMore}
           endMessage={
             <p style={{ textAlign: "center" }}>
-              <b>Yay! You have seen it all</b>
+              <b>You caught them all!</b>
             </p>
           }
         >
