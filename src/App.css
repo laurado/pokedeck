@@ -15,6 +15,7 @@
   width: 200px;
   height: 290px;
   border-radius: 5%;
+  padding: 20px;
   background-color: #F5F5F5;
   font-family: 'Fresca', sans-serif;
   border: 5px solid #FFCD00;
@@ -24,4 +25,14 @@
 .card-front:hover {
   background-color: #ededed;
   color: black;
+}
+
+.stats {
+  text-align: left;
+}
+
+.card-front-img {
+  border: 3px solid #545b62;
+  padding: 0 25px;
+  background-color: #fff9de;
 }

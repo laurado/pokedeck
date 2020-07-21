@@ -6,7 +6,12 @@ function CardFront (props) {
     <Button className='card-front' onClick={(e) => props.handleClick(e)}>
       <div>
         <img className='card-front-img' src={props.pokemon.sprites.front_default} />
-        <h2>{props.pokemon.name}</h2>
+        <div className='stats'>
+          <h3 className='mt-1'>{props.pokemon.name}</h3>
+          <p className='mb-0'>id: {props.pokemon.id}</p>
+          <p className='mb-0'>height: {props.pokemon.height}</p>
+          <p className='mb-0'>weight: {props.pokemon.weight}</p>
+        </div>
       </div>
     </Button>
   )

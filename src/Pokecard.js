@@ -19,7 +19,13 @@ class Pokecard extends React.Component {
 
   render() {
     return (
-      <Col xs='3' className='py-3'>
+      <Col
+        xs='12'
+        sm='6'
+        md='4'
+        lg='3'
+        className='py-3'
+      >
         <ReactCardFlip
           isFlipped={this.state.isFlipped}
           flipDirection="horizontal"
