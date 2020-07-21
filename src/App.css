@@ -18,8 +18,10 @@
   background-color: #F5F5F5;
   font-family: 'Fresca', sans-serif;
   border: 5px solid #FFCD00;
+  color: black;
 }
 
 .card-front:hover {
   background-color: #ededed;
+  color: black;
 }
