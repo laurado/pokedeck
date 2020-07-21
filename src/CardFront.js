@@ -9,12 +9,13 @@ function CardFront (props) {
       ariaLabel='flip card to back'
     >
       <div>
-        <img 
-          className='card-front-img'
-          src={props.pokemon.sprites.front_default}
-          alt={props.pokemon.name}
-        />
-        <h2>{props.pokemon.name}</h2>
+        <img className='card-front-img' src={props.pokemon.sprites.front_default} />
+        <div className='stats'>
+          <h3 className='mt-1'>{props.pokemon.name}</h3>
+          <p className='mb-0'>id: {props.pokemon.id}</p>
+          <p className='mb-0'>height: {props.pokemon.height}</p>
+          <p className='mb-0'>weight: {props.pokemon.weight}</p>
+        </div>
       </div>
     </Button>
   )
