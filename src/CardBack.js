@@ -7,7 +7,7 @@ function CardBack (props) {
     <Button
       className='card-back'
       onClick={(e) => props.handleClick(e)}
-      ariaLabel='flip card to front'
+      aria-label='flip card to front'
     >
       <div>
         <img

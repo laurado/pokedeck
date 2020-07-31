@@ -6,7 +6,7 @@ function CardFront (props) {
     <Button
       className='card-front'
       onClick={(e) => props.handleClick(e)}
-      ariaLabel='flip card to back'
+      aria-label='flip card to back'
     >
       <div>
         <img
