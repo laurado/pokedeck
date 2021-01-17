@@ -11,13 +11,13 @@ class App extends React.Component {
     this.state = {
       pokemon: [],
       hasMore: true,
-      isInfiniteScrollOn: true,
+      isInfiniteScrollOn: JSON.parse(localStorage.getItem('isInfiniteScrollOn')) || false,
     }
   }
 
   componentDidMount() {
     let promises = []
-    const nPokemon = 12;
+    const nPokemon = this.state.isInfiniteScrollOn ? 12 : 151;
     for (let i = 1; i <= nPokemon; i++) {
       var newPokemon = fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
       .then(response => response.json())
@@ -57,6 +57,7 @@ class App extends React.Component {
 
   handleInfiniteScrollToggle = () => {
     this.setState({ isInfiniteScrollOn: !this.state.isInfiniteScrollOn });
+    localStorage.setItem('isInfiniteScrollOn', !this.state.isInfiniteScrollOn);
   }
 
   render() {
