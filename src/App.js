@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row } from 'reactstrap';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import Switch from "react-switch";
 import Pokecard from './Pokecard';
 import './App.css';
 
@@ -10,6 +11,7 @@ class App extends React.Component {
     this.state = {
       pokemon: [],
       hasMore: true,
+      isInfiniteScrollOn: true,
     }
   }
 
@@ -28,6 +30,10 @@ class App extends React.Component {
   }
 
   fetchMoreData = () => {
+    if (!this.state.isInfiniteScrollOn) {
+      return;
+    }
+
     if (this.state.pokemon.length >= 150) {
       this.setState({ hasMore: false });
       return;
@@ -49,6 +55,10 @@ class App extends React.Component {
     })
   };
 
+  handleInfiniteScrollToggle = () => {
+    this.setState({ isInfiniteScrollOn: !this.state.isInfiniteScrollOn });
+  }
+
   render() {
     let cards = this.state.pokemon.map(pokemon => {
       return (
@@ -61,6 +71,10 @@ class App extends React.Component {
 
     return (
       <Container className="App">
+        <label className="d-flex pt-5">
+          <span className="align-self-center pr-2">Infinite Scroll</span>
+          <Switch onChange={this.handleInfiniteScrollToggle} checked={this.state.isInfiniteScrollOn} />
+        </label>
         <InfiniteScroll
           dataLength={this.state.pokemon.length}
           next={this.fetchMoreData}
