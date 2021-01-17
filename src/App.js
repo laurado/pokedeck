@@ -15,7 +15,8 @@ class App extends React.Component {
 
   componentDidMount() {
     let promises = []
-    for (let i = 1; i < 9; i++) {
+    const nPokemon = 12;
+    for (let i = 1; i <= nPokemon; i++) {
       var newPokemon = fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
       .then(response => response.json())
       .then(data => {
